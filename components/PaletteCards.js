@@ -44,5 +44,8 @@ const paletteCards = {
                 });
             });
         }
+    },
+    mounted() {
+        this.generateRandomPalette();
     }
 };
