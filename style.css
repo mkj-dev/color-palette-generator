@@ -64,6 +64,7 @@ body {
 /* BUTTON */
 .button {
     display: block;
+    cursor: pointer;
     margin: 2rem auto;
     text-transform: uppercase;
     border: transparent;
