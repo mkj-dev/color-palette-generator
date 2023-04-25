@@ -3,7 +3,7 @@ const paletteCards = {
     /*html*/
     `<button type="button" @click="generateRandomPalette" class="button">Generate Palette</button>
     <div id="copy-info">
-        <h3>Click the hex value of the color to copy it.</h3>
+        <h3>Double click the hex value of the color to copy it.</h3>
         <p></p>
     </div>
     <div id="palette-cards">
