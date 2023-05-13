@@ -1,9 +1,9 @@
 const paletteCards = {
-    template:
+  template:
     /*html*/
     `<button type="button" @click="generateRandomPalette" class="button">Generate Palette</button>
     <div id="copy-info">
-        <h3>Double click the hex value of the color to copy it.</h3>
+        <h3>Click the hex value of the color to copy it to the clipboard!</h3>
         <p></p>
     </div>
     <div id="palette-cards">
@@ -13,39 +13,40 @@ const paletteCards = {
         </div>
     </div>
     `,
-    methods: {
-        generateRandomColors() {
-            const hexValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-            let color = '#';
+  methods: {
+    generateRandomColors() {
+      const hexValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+      let color = '#';
 
-            for (let i = 0; i <= 5; i++) {
-                const random = Math.floor(Math.random() * hexValues.length);
-                color += hexValues[random];
-            }
+      for (let i = 0; i <= 5; i++) {
+        const random = Math.floor(Math.random() * hexValues.length);
+        color += hexValues[random];
+      }
 
-            return color;
-        },
-        generateRandomPalette() {
-            const cardColors = document.querySelectorAll('.card-color');
-            const hexValues = document.querySelectorAll('.color-hex');
-
-            cardColors.forEach(c => c.style.backgroundColor = this.generateRandomColors());
-            hexValues.forEach(val => val.innerText = this.generateRandomColors());
-        },
-        copyColorToClipboard() {
-            const hexValues = document.querySelectorAll('.color-hex');
-            const copyInfoParagraph = document.querySelector('#copy-info>p');
-
-            hexValues.forEach(val => {
-                val.addEventListener('click', () => {
-                    // Copy color value to the clipboard
-                    navigator.clipboard.writeText(val.innerText);
-                    copyInfoParagraph.innerText = `Color ${val.innerText} copied to the clipboard!`;
-                });
-            });
-        }
+      return color;
     },
-    mounted() {
-        this.generateRandomPalette();
+    generateRandomPalette() {
+      const cardColors = document.querySelectorAll('.card-color');
+      const hexValues = document.querySelectorAll('.color-hex');
+
+      cardColors.forEach(c => c.style.backgroundColor = this.generateRandomColors());
+      hexValues.forEach(val => val.innerText = this.generateRandomColors());
+    },
+    copyColorToClipboard() {
+      const hexValues = document.querySelectorAll('.color-hex');
+      const copyInfoParagraph = document.querySelector('#copy-info>p');
+
+      hexValues.forEach(val => {
+        val.addEventListener('click', () => {
+          // Copy color value to the clipboard
+          navigator.clipboard.writeText(val.innerText);
+          copyInfoParagraph.innerText = `Color ${val.innerText} copied to the clipboard!`;
+        });
+      });
     }
+  },
+  mounted() {
+    this.generateRandomPalette();
+    this.copyColorToClipboard();
+  }
 };
